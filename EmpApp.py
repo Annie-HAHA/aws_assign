@@ -25,17 +25,17 @@ table = 'employee'
 def Home():
     return render_template('home.html')
 
-@app.route("/about", methods=['POST'])
+@app.route("/about", methods=['GET', 'POST'])
 def about():
     return render_template('www.intellipaat.com')
 
 @app.route("/addemp/", methods=['GET', 'POST'])
-def home():
+def addEmp():
     return render_template('AddEmp.html')
 
 
 @app.route("/addemp/results", methods=['POST'])
-def AddEmp():
+def AddEmp_Results():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
@@ -86,4 +86,3 @@ def AddEmp():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
-

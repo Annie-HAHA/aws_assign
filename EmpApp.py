@@ -81,34 +81,7 @@ def Emp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=emp_name)
-
-@app.route("/getEmp/")
-def GetEmp():
-    return render_template('GetEmp.html', name=emp_name)
-
-@app.route("/getEmp/results", methods=['GET', 'POST'])
-def GetEmp():
-    #Get
-    emp_id = request.form['emp_id']
-    #Select
-    select_stmt = "SELECT * FROM employee WHERE emp_id = %(emp_id)s"
-
-    cursor = db_conn.cursor()
-
-    try:
-        cursor.execute(select_stmt, { 'emp_id': int(emp_id) })
-        #Fetch
-        for result in cursor:
-            print(result)
-
-    except Exception as e:
-        return str(e)
-
-    finally:
-        cursor.close()
-
-    return render_template('GetEmpOutput.html', result=result)    
+    return render_template('AddEmpOutput.html', name=emp_name)   
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

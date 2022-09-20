@@ -22,7 +22,7 @@ table = 'employee'
 
 
 @app.route("/")
-def Home():
+def home():
     return render_template('home.html')
 
 @app.route("/about", methods=['GET', 'POST'])
@@ -35,7 +35,7 @@ def addEmp():
 
 
 @app.route("/addemp/results", methods=['GET', 'POST'])
-def AddEmp_Results():
+def emp():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']

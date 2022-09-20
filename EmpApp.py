@@ -21,21 +21,18 @@ output = {}
 table = 'employee'
 
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('home.html')
-
-@app.route("/about", methods=['GET', 'POST'])
-def about():
-    return render_template('www.intellipaat.com')
-
-@app.route("/addemp/", methods=['GET', 'POST'])
-def addEmp():
     return render_template('AddEmp.html')
 
 
-@app.route("/addemp/results", methods=['GET', 'POST'])
-def emp():
+@app.route("/about", methods=['POST'])
+def about():
+    return render_template('www.intellipaat.com')
+
+
+@app.route("/addemp", methods=['POST'])
+def AddEmp():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']

@@ -83,7 +83,7 @@ def Emp():
     print("all modification done...")
     return render_template('AddEmpOutput.html', name=emp_name)
 
-@app.route("/getEmp/", methods=['GET'])
+@app.route("/getEmp/")
 def GetEmp():
     return render_template('GetEmp.html', name=emp_name)
 

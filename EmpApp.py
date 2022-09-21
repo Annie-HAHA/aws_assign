@@ -20,15 +20,17 @@ db_conn = connections.Connection(
 output = {}
 table = 'employee'
 
-
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/home")
 def home():
-    return render_template('AddEmp.html')
-
+    return render_template('home.html')
 
 @app.route("/about", methods=['POST'])
 def about():
     return render_template('www.intellipaat.com')
+
+@app.route("/", methods=['GET', 'POST'])
+def Emp():
+    return render_template('AddEmp.html')
 
 
 @app.route("/addemp", methods=['POST'])

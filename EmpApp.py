@@ -20,7 +20,7 @@ db_conn = connections.Connection(
 output = {}
 table = 'employee'
 
-@app.route("/home")
+@app.route("/")
 def home():
     return render_template('home.html')
 
@@ -28,12 +28,12 @@ def home():
 def about():
     return render_template('www.intellipaat.com')
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/addemp", methods=['GET', 'POST'])
 def Emp():
     return render_template('AddEmp.html')
 
 
-@app.route("/addemp", methods=['POST'])
+@app.route("/addemp/results", methods=['POST'])
 def AddEmp():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']

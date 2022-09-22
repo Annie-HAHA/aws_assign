@@ -131,7 +131,7 @@ def deleteEmployee():
         #cursor = db_conn.cursor()
 
         try:
-            delete_sql = "DELETE * FROM employee WHERE emp_id = %s"
+            delete_sql = "DELETE FROM employee WHERE emp_id = %s"
             cursor.execute(delete_sql, (emp_id))
             db_conn.commit()
             print("Data deleted from MySQL RDS... deleting image from S3...")

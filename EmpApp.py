@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from pymysql import connections
 import os
 from config import *
+import boto3
 
 app = Flask(__name__)
 
@@ -118,7 +119,7 @@ def deleteEmp():
 @app.route("/deleteemp/results",methods=['GET','POST'])
 def deleteEmployee():
     emp_id = request.form['emp_id']
-    delete_sql = "DELETE * FROM employee WHERE emp_id = %s"
+    delete_sql = "DELETE FROM employee WHERE emp_id = %s"
 
     cursor = db_conn.cursor()
 

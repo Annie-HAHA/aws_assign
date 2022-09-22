@@ -135,7 +135,7 @@ def deleteEmployee():
             cursor.execute(delete_sql, (emp_id))
             db_conn.commit()
             print("Data deleted from MySQL RDS... deleting image from S3...")
-                boto3.client('s3').delete_object(Bucket=custombucket, Key=emp_image_file_name_in_s3)
+            boto3.client('s3').delete_object(Bucket=custombucket, Key=emp_image_file_name_in_s3)
 
         except Exception as e:
             return str(e)

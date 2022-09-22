@@ -129,10 +129,10 @@ def deleteEmployee():
         if request.methods == "POST":
             if employee:
                 
-        cursor.execute(delete_sql, {'emp_id': int(emp_id)})
+                cursor.execute(delete_sql, {'emp_id': int(emp_id)})
         #for id in cursor:
         #    print(id)
-        db_conn.commit()
+                db_conn.commit()
 
     except Exception as e:
         return str(e)

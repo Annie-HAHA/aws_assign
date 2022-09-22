@@ -116,15 +116,15 @@ def deleteEmp():
     return render_template('DeleteEmp.html')
 
 #Delete Employee Results
-@app.route("/deleteemp/results",methods=['GET', 'DELETE'])
-def deleteEmployee():
+@app.route("/deleteemp/results")
+def deleteEmployee(emp_id):
     emp_id = request.form['emp_id']
     delete_sql = "DELETE * FROM employee WHERE emp_id = %s"
 
     cursor = db_conn.cursor()
 
     try:
-        cursor.execute(delete_sql, {'emp_id': int(emp_id)})
+        cursor.delete(delete_sql, {'emp_id': int(emp_id)})
         # for result in cursor:
         #     print(result)
         db_conn.commit()

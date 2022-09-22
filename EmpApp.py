@@ -117,7 +117,7 @@ def deleteEmp():
 
 #Delete Employee Results
 @app.route("/deleteemp/results",methods=['GET','POST'])
-def deleteEmployee(emp_id):
+def deleteEmployee():
     emp_id = request.form['emp_id']
     delete_sql = "DELETE * FROM employee WHERE emp_id = %s"
 

@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 from pymysql import connections
 import os
 from config import *
-import boto3
 
 app = Flask(__name__)
 

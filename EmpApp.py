@@ -126,7 +126,7 @@ def deleteEmployee():
     try:
         cursor.execute(delete_sql, {'emp_id': int(emp_id)})
         for name in cursor:
-             print(result)
+             print(name)
         db_conn.commit()
 
     except Exception as e:

@@ -119,7 +119,7 @@ def deleteEmp():
 @app.route("/deleteemp/results",methods=['GET','POST'])
 def deleteEmployee():
     emp_id = request.form['emp_id']
-    delete_sql = "DELETE FROM employee WHERE emp_id = %s"
+    delete_sql = "DELETE FROM employee WHERE emp_id = %(emp_id)s"
 
     cursor = db_conn.cursor()
 
@@ -136,7 +136,7 @@ def deleteEmployee():
         cursor.close()
 
     print("result done...")
-    return render_template('DeleteEmpOutput.html') #, name=emp_name
+    return render_template('DeleteEmpOutput.html', result=result) #, name=emp_name
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

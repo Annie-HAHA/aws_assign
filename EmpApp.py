@@ -116,29 +116,38 @@ def deleteEmp():
     return render_template('DeleteEmp.html')
 
 #Delete Employee Results
-@app.route("/deleteemp/results",methods=['GET','POST'])
+@app.route("/deleteemp/results",methods=['POST'])
 def deleteEmployee():
     emp_id = request.form['emp_id']
-    delete_sql = "DELETE * FROM employee WHERE emp_id = %(emp_id)s"
-
+    select_sql = "SELECT * FROM employee WHERE emp_id = %s"
     cursor = db_conn.cursor()
-    #if emp_id == "":
-    #    return "Please enter an ID to delete"
+    cursor.execute(select_sql, (emp_id))
+    result = cursor.fetchone()
+    if(len(result)>0):
+        emp_name = result[1]+" "+result[2]
+        emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
+        s3 = boto3.resource('s3')
 
-    try:
-        cursor.execute(delete_sql, {'emp_id': int(emp_id)})
-        #for id in cursor:
-        #    print(id)
-        db_conn.commit()
+        #cursor = db_conn.cursor()
 
-    except Exception as e:
-        return str(e)
+        try:
+            delete_sql = "DELETE * FROM employee WHERE emp_id = %s"
+            cursor.execute(delete_sql, (emp_id))
+            db_conn.commit()
+            print("Data deleted from MySQL RDS... deleting image from S3...")
+                boto3.client('s3').delete_object(Bucket=custombucket, Key=emp_image_file_name_in_s3)
 
-    finally:
+        except Exception as e:
+            return str(e)
+
+        finally:
+            cursor.close()
+
+        print("result done...")
+            return render_template('DeleteEmpOutput.html', name=emp_name) #, name=emp_name
+    else:
         cursor.close()
-
-    print("result done...")
-    return render_template('DeleteEmpOutput.html') #, name=emp_name
+        return("No Employee Found")  
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

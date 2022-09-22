@@ -144,7 +144,7 @@ def deleteEmployee():
             cursor.close()
 
         print("result done...")
-            return render_template('DeleteEmpOutput.html', name=emp_name) #, name=emp_name
+        return render_template('DeleteEmpOutput.html', name=emp_name) #, name=emp_name
     else:
         cursor.close()
         return("No Employee Found")  

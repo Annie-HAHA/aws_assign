@@ -116,7 +116,7 @@ def deleteEmp():
     return render_template('DeleteEmp.html')
 
 #Delete Employee Results
-@app.route("/deleteemp/results")
+@app.route("/deleteemp/results",methods=['GET','POST'])
 def deleteEmployee(emp_id):
     emp_id = request.form['emp_id']
     delete_sql = "DELETE * FROM employee WHERE emp_id = %s"
@@ -124,7 +124,7 @@ def deleteEmployee(emp_id):
     cursor = db_conn.cursor()
 
     try:
-        cursor.delete(delete_sql, {'emp_id': int(emp_id)})
+        cursor.execute(delete_sql, {'emp_id': int(emp_id)})
         # for result in cursor:
         #     print(result)
         db_conn.commit()
@@ -136,7 +136,7 @@ def deleteEmployee(emp_id):
         cursor.close()
 
     print("result done...")
-    return render_template('DeleteEmpOutput.html', name=emp_name)
+    return render_template('DeleteEmpOutput.html') #, name=emp_name
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

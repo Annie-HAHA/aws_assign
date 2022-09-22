@@ -119,7 +119,7 @@ def deleteEmp():
 @app.route("/deleteemp/results",methods=['DELETE'])
 def deleteEmployee():
     emp_id = request.form['emp_id']
-    delete_sql = "DELETE * FROM employee WHERE emp_id = %(emp_id)s"
+    delete_sql = "DELETE * FROM employee WHERE emp_id = %s"
 
     cursor = db_conn.cursor()
 

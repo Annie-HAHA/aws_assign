@@ -125,8 +125,8 @@ def deleteEmployee():
 
     try:
         cursor.execute(delete_sql, {'emp_id': int(emp_id)})
-        for name in cursor:
-             print(name)
+        #for name in cursor:
+        #     print(name)
         db_conn.commit()
 
     except Exception as e:
@@ -136,7 +136,7 @@ def deleteEmployee():
         cursor.close()
 
     print("result done...")
-    return render_template('DeleteEmpOutput.html', name=emp_id) #, name=emp_name
+    return render_template('DeleteEmpOutput.html') #, name=emp_name
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

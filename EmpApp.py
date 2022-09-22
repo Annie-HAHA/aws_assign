@@ -111,7 +111,7 @@ def Employee():
     return render_template('GetEmpOutput.html', result=result)
 
 # delete emp
-@app.route("/deleteemp")
+@app.route("/deleteemp", methods=['GET', 'POST'])
 def deleteEmp():
     return render_template('DeleteEmp.html')
 

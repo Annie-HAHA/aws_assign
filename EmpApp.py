@@ -136,7 +136,7 @@ def deleteEmployee():
         cursor.close()
 
     print("result done...")
-    return render_template('DeleteEmpOutput.html', result=result) #, name=emp_name
+    return render_template('DeleteEmpOutput.html', name=emp_name) #, name=emp_name
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
